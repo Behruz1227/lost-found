@@ -37,6 +37,7 @@ import {
 // core components
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
+import SignNav from "components/Navbars/SignNav";
 
 class Login extends React.Component {
   componentDidMount() {
@@ -47,7 +48,7 @@ class Login extends React.Component {
   render() {
     return (
       <>
-        <DemoNavbar />
+        <SignNav />
         <main ref="main">
           <section className="section section-shaped section-lg">
             <div className="shape shape-style-1 bg-gradient-default">
@@ -184,7 +185,7 @@ class Login extends React.Component {
             </Container>
           </section>
         </main>
-        <SimpleFooter />
+        {/* <SimpleFooter /> */}
       </>
     );
   }
