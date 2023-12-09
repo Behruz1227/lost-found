@@ -40,11 +40,16 @@ const DemoNavbar = () => {
 
   // about page utish uchun
   const goAbout = () => byId("aboutBtn").click();
+  const logOut = () => {
+    byId("logout").click();
+    sessionStorage.clear();
+  }
 
   return (
     <>
       {/* about uchun link btn */}
-      <Link id="aboutBtn" to="/"></Link>
+      <Link id="aboutBtn" to="/home"></Link>
+      <Link id="logout" to="/"></Link>
 
       <header className="header-global">
         <Navbar
@@ -52,7 +57,7 @@ const DemoNavbar = () => {
           expand="lg"
           id="navbar-main">
           <Container>
-            <NavbarBrand className="mr-lg-5" href="/" tag={NavLink} style={{ cursor: "pointer" }}>
+            <NavbarBrand className="mr-lg-5" href="/home" tag={NavLink} style={{ cursor: "pointer" }}>
               <img
                 alt="..."
                 src={require("assets/img/brand/argon-react-white.png")} />
@@ -98,20 +103,20 @@ const DemoNavbar = () => {
                 <UncontrolledDropdown nav>
                   <DropdownToggle nav>
                     <i className="ni ni-collection d-lg-none mr-1" />
-                    <span className="nav-link-inner--text">Categores</span>
+                    <span className="nav-link-inner--text">Category</span>
                   </DropdownToggle>
-                  <DropdownMenu style={{ color: "#748EF4" }}>
-                    <DropdownItem tag={NavLink}>
-                      <Link to="/landing-page">
-                        Landing
-                      </Link>
-                    </DropdownItem>
-                    <DropdownItem tag={NavLink}>
-                      <Link to="/profile-page">
-                        Profile
-                      </Link>
-                    </DropdownItem>
-                    <DropdownItem tag={NavLink}>
+                  <DropdownMenu>
+                    <Link to="/lost">
+                      <DropdownItem tag={NavLink} style={{ color: "#748EF4" }}>
+                        Lost
+                      </DropdownItem>
+                    </Link>
+                    <Link to="/found">
+                      <DropdownItem tag={NavLink} style={{ color: "#748EF4" }}>
+                        Found
+                      </DropdownItem>
+                    </Link>
+                    {/* <DropdownItem tag={NavLink}>
                       <Link to="/login-page">
                         Login
                       </Link>
@@ -120,7 +125,7 @@ const DemoNavbar = () => {
                       <Link to="/register-page">
                         Register
                       </Link>
-                    </DropdownItem>
+                    </DropdownItem> */}
                   </DropdownMenu>
                 </UncontrolledDropdown>
               </Nav>
@@ -185,11 +190,11 @@ const DemoNavbar = () => {
                     Star us on Github
                   </UncontrolledTooltip>
                 </NavItem>
-                <NavItem className="d-none d-lg-block ml-lg-4">
+                <NavItem className="d-lg-block ml-lg-3">
                   <Button
+                    onClick={logOut}
                     className="btn-neutral btn-icon"
-                    color="default"
-                    target="_blank">
+                    color="default">
                     <span className="btn-inner--icon">
                       <Icon icon="basil:logout-outline" rotate={2} width="20" />
                     </span>

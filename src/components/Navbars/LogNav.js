@@ -144,7 +144,7 @@ const LogNav = () => {
                     Star us on Github
                   </UncontrolledTooltip>
                 </NavItem>
-                <NavItem className="d-none d-lg-block ml-lg-4">
+                <NavItem className="d-lg-block ml-lg-3">
                   <Link to="/register-page">
                     <Button
                       className="btn-neutral btn-icon"

@@ -38,13 +38,15 @@ const DefaultNav = () => {
     setCollapseClasses("");
   };
 
-  // about page utish uchun
-  const goAbout = () => byId("aboutBtn").click();
+  // signUn and signIn page utish uchun
+  const signIn = () => byId("signIn").click();
+  const signUp = () => byId("signUp").click();
 
   return (
     <>
       {/* about uchun link btn */}
-      <Link id="aboutBtn" to="/"></Link>
+      <Link id="signIn" to="/login-page"></Link>
+      <Link id="signUp" to="/register-page"></Link>
 
       <header className="header-global">
         <Navbar
@@ -83,47 +85,6 @@ const DefaultNav = () => {
                   </Col>
                 </Row>
               </div>
-              <Nav className="navbar-nav-hover align-items-lg-center" navbar>
-                <UncontrolledDropdown nav>
-                  <DropdownToggle nav>
-                    <i className="ni ni-ui-04 d-lg-none mr-1" />
-                    <span className="nav-link-inner--text" onClick={goAbout}>About</span>
-                  </DropdownToggle>
-                  {/* <DropdownMenu className="dropdown-menu-xl">
-                    <div className="dropdown-menu-inner">
-                      about
-                    </div>
-                  </DropdownMenu> */}
-                </UncontrolledDropdown>
-                <UncontrolledDropdown nav>
-                  <DropdownToggle nav>
-                    <i className="ni ni-collection d-lg-none mr-1" />
-                    <span className="nav-link-inner--text">Categores</span>
-                  </DropdownToggle>
-                  <DropdownMenu style={{ color: "#748EF4" }}>
-                    <DropdownItem tag={NavLink}>
-                      <Link to="/landing-page">
-                        Landing
-                      </Link>
-                    </DropdownItem>
-                    <DropdownItem tag={NavLink}>
-                      <Link to="/profile-page">
-                        Profile
-                      </Link>
-                    </DropdownItem>
-                    <DropdownItem tag={NavLink}>
-                      <Link to="/login-page">
-                        Login
-                      </Link>
-                    </DropdownItem>
-                    <DropdownItem tag={NavLink}>
-                      <Link to="/register-page">
-                        Register
-                      </Link>
-                    </DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-              </Nav>
               <Nav className="align-items-lg-center ml-lg-auto" navbar>
                 <NavItem>
                   <NavLink
@@ -185,16 +146,25 @@ const DefaultNav = () => {
                     Star us on Github
                   </UncontrolledTooltip>
                 </NavItem>
-                <NavItem className="d-none d-lg-block ml-lg-4">
+                <NavItem className="d-none d-lg-block ml-lg-3">
                   <Button
+                  onClick={signIn}
                     className="btn-neutral btn-icon"
                     color="default"
                     target="_blank">
-                    <span className="btn-inner--icon">
-                      <Icon icon="basil:logout-outline" rotate={2} width="20" />
+                    <span className="nav-link-inner--text">
+                      Sign In
                     </span>
-                    <span className="nav-link-inner--text ml-2">
-                      Log out
+                  </Button>
+                </NavItem>
+                <NavItem className="d-lg-block ml-lg-2">
+                  <Button
+                  onClick={signUp}
+                    className="btn-neutral btn-icon"
+                    color="default"
+                    target="_blank">
+                    <span className="nav-link-inner--text">
+                      Sign Up
                     </span>
                   </Button>
                 </NavItem>
