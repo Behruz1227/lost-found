@@ -60,12 +60,12 @@ const Index = () => {
               <Labels />
             </Row>
             <Alerts />
-            <Typography />
             <Modals />
             <Datepicker />
             <TooltipPopover />
-          </Container>
-        </section> */}
+            </Container>
+          </section> */}
+          <Typography />
         {/* <Carousel /> */}
         {/* <Icons />
         <Login />
