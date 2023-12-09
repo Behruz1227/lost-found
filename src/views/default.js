@@ -23,7 +23,7 @@ import Login from "./IndexSections/Login.js";
 import Download from "./IndexSections/Download.js";
 import Navbars from "./IndexSections/Navbars.js";
 
-const Index = () => {
+const Default = () => {
   const mainRef = useRef(null);
 
   useEffect(() => {
@@ -76,4 +76,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Default;
