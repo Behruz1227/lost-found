@@ -144,7 +144,7 @@ const SignNav = () => {
                     Star us on Github
                   </UncontrolledTooltip>
                 </NavItem>
-                <NavItem className="d-none d-lg-block ml-lg-4">
+                <NavItem className="d-lg-block ml-lg-3">
                   <Link to="/login-page">
                     <Button
                       className="btn-neutral btn-icon"
@@ -154,7 +154,7 @@ const SignNav = () => {
                         <Icon icon="basil:logout-outline" rotate={2} width="20" />
                       </span>
                       <span className="nav-link-inner--text ml-2">
-                       Login in
+                       Sign In
                       </span>
                     </Button>
                   </Link>
