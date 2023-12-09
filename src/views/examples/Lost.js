@@ -19,6 +19,7 @@ import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import CardsFooter from "components/Footers/CardsFooter.js";
 import Download from "../IndexSections/Download.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
+import { Link } from "react-router-dom";
 
 const Lost = () => {
   useEffect(() => {
@@ -27,6 +28,7 @@ const Lost = () => {
     // this.refs.main.scrollTop = 0; (This part might need refactoring)
   }, []);
 
+  const link = () => document.getElementById("link").click
   return (
     <>
       <DemoNavbar />
@@ -124,6 +126,7 @@ const Lost = () => {
                           <h6 className="text-primary mt-4 text-uppercase">
                             Download Argon
                           </h6>
+                          <Link to="/single/about" id="link">
                           <Button
                             className="mt-4"
                             color="primary"
@@ -132,6 +135,7 @@ const Lost = () => {
                           >
                             Learn more
                           </Button>
+                          </Link>
                         </CardBody>
                       </Card>
                     </Col>
