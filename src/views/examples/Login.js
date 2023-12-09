@@ -35,9 +35,7 @@ import {
 } from "reactstrap";
 
 // core components
-import DemoNavbar from "components/Navbars/DemoNavbar.js";
-import SimpleFooter from "components/Footers/SimpleFooter.js";
-import SignNav from "components/Navbars/SignNav";
+import LogNav from "components/Navbars/LogNav";
 
 class Login extends React.Component {
   componentDidMount() {
@@ -48,7 +46,7 @@ class Login extends React.Component {
   render() {
     return (
       <>
-        <SignNav />
+        <LogNav />
         <main ref="main">
           <section className="section section-shaped section-lg">
             <div className="shape shape-style-1 bg-gradient-default">

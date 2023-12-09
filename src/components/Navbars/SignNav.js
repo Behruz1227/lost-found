@@ -145,7 +145,7 @@ const SignNav = () => {
                   </UncontrolledTooltip>
                 </NavItem>
                 <NavItem className="d-none d-lg-block ml-lg-4">
-                  <Link to="/register-page">
+                  <Link to="/login-page">
                     <Button
                       className="btn-neutral btn-icon"
                       color="default"
@@ -154,7 +154,7 @@ const SignNav = () => {
                         <Icon icon="basil:logout-outline" rotate={2} width="20" />
                       </span>
                       <span className="nav-link-inner--text ml-2">
-                       Sign up 
+                       Login in
                       </span>
                     </Button>
                   </Link>

@@ -35,7 +35,7 @@ import {
 } from "reactstrap";
 
 // core components
-import LogNav from "components/Navbars/LogNav";
+import SignNav from "components/Navbars/SignNav";
 
 class Register extends React.Component {
   componentDidMount() {
@@ -46,7 +46,7 @@ class Register extends React.Component {
   render() {
     return (
       <>
-        <LogNav />
+        <SignNav />
         <main ref="main">
           <section className="section section-shaped section-lg">
             <div className="shape shape-style-1 bg-gradient-default">
