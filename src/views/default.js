@@ -22,6 +22,7 @@ import Icons from "./IndexSections/Icons.js";
 import Login from "./IndexSections/Login.js";
 import Download from "./IndexSections/Download.js";
 import Navbars from "./IndexSections/Navbars.js";
+import Loginga from "components/Footers/Loginga.js";
 
 const Default = () => {
   const mainRef = useRef(null);
@@ -71,7 +72,7 @@ const Default = () => {
         <Login />
         <Download /> */}
       </main>
-      <CardsFooter />
+      <Loginga />
     </>
   );
 };

@@ -29,13 +29,15 @@ import Lost from "views/examples/Lost";
 import Login from "views/examples/Login.js";
 import Profile from "views/examples/Profile.js";
 import Register from "views/examples/Register.js";
+import Default from "views/default";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" exact element={<Index />} />
+      <Route path="/" exact element={<Default />} />
+      <Route path="/home" exact element={<Index />} />
       <Route path="/found" exact element={<Found />} />
       <Route path="/lost" exact element={<Lost />} />
       <Route path="/login-page" exact element={<Login />} />

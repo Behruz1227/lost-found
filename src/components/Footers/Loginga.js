@@ -13,7 +13,7 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 
-const CardsFooter = () => {
+const Loginga = () => {
   return (
     <>
       <footer className="footer has-cards">
@@ -24,7 +24,7 @@ const CardsFooter = () => {
           }}>
             <Col className="mb-5 mb-md-0" md="5">
               <Card className="card-lift--hover shadow border-0">
-                <Link to="/lost">
+                <Link to="/register-page">
                   <CardImg
                     className="p-5"
                     alt="..."
@@ -35,7 +35,7 @@ const CardsFooter = () => {
             </Col>
             <Col className="mb-5 mb-lg-0" md="5">
               <Card className="card-lift--hover shadow border-0">
-                <Link to="/found">
+                <Link to="/register-page">
                   <CardImg
                     alt="..."
                     src={require("assets/img/theme/profile.png")} />
@@ -164,4 +164,4 @@ const CardsFooter = () => {
   );
 }
 
-export default CardsFooter;
+export default Loginga;
