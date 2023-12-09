@@ -35,8 +35,7 @@ import {
 } from "reactstrap";
 
 // core components
-import DemoNavbar from "components/Navbars/DemoNavbar.js";
-import SimpleFooter from "components/Footers/SimpleFooter.js";
+import LogNav from "components/Navbars/LogNav";
 
 class Register extends React.Component {
   componentDidMount() {
@@ -47,7 +46,7 @@ class Register extends React.Component {
   render() {
     return (
       <>
-        <DemoNavbar />
+        <LogNav />
         <main ref="main">
           <section className="section section-shaped section-lg">
             <div className="shape shape-style-1 bg-gradient-default">
@@ -194,7 +193,7 @@ class Register extends React.Component {
             </Container>
           </section>
         </main>
-        <SimpleFooter />
+        {/* <SimpleFooter /> */}
       </>
     );
   }

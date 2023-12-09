@@ -23,6 +23,7 @@ import Login from "./IndexSections/Login.js";
 import Download from "./IndexSections/Download.js";
 import Navbars from "./IndexSections/Navbars.js";
 import Loginga from "components/Footers/Loginga.js";
+import DefaultNav from "components/Navbars/DefaultNav.js";
 
 const Default = () => {
   const mainRef = useRef(null);
@@ -37,7 +38,7 @@ const Default = () => {
 
   return (
     <>
-      <DemoNavbar />
+      <DefaultNav />
       <main ref={mainRef}>
         <Hero />
         {/* <Buttons />
