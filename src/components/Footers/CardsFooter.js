@@ -13,7 +13,7 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 
-function CardsFooter() {
+const CardsFooter = () => {
   return (
     <>
       <footer className="footer has-cards">
