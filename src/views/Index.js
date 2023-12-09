@@ -65,7 +65,7 @@ const Index = () => {
             <TooltipPopover />
             </Container>
           </section> */}
-          <Typography />
+          {/* <Typography /> */}
         {/* <Carousel /> */}
         {/* <Icons />
         <Login />
