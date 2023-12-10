@@ -48,7 +48,7 @@ const Register = () => {
         } else toast.error(`${addData.phone_number} bu raqamdan oldin foydalanilgan bulishi mumkin, ma'lumotlarni tekshirib qaytadan urinib ko'ring!!!`)
       })
       .catch(() => {
-        toast.error(`${addData.phone_number} bu raqamdan oldin foydalanilgan bulishi mumkin, ma'lumotlarni tekshirib qaytadan urinib ko'ring!!!`);
+        toast.error(`Bu raqamdan oldin foydalanilgan bulishi mumkin, ma'lumotlarni tekshirib qaytadan urinib ko'ring!!!`);
       })
   }
 
