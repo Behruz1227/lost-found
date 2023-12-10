@@ -24,7 +24,6 @@ import { Link } from "react-router-dom";
 const Register = () => {
 
   const mainRef = useRef(null);
-  const [code, setCode] = useState("")
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -34,7 +33,6 @@ const Register = () => {
     }
   }, []);
 
-  // button bosilganda foydalanuvchiga xabar juanatish kerak shuni men qilishim kerak
   const createAccount = () => {
     let addData = {
       phone_number: `+998${byId("phoneNumber").value}`,
