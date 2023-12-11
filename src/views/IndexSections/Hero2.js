@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Button, Container, Row, Col } from "reactstrap";
 
-const Hero2 = () => {
+const Hero = () => {
   useEffect(() => {
     // Biron bir side effect uchun kerak bo'lsa shu yerga yozing
     // Masalan, component yuklanganda qandaydir bir narsa bajarmoqchi bo'lsangiz
@@ -79,4 +79,4 @@ const Hero2 = () => {
   );
 };
 
-export default Hero2;
+export default Hero;
