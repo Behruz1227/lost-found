@@ -23,17 +23,18 @@ import { ToastContainer, toast } from "react-toastify";
 
 const Lost = () => {
 
+  const [lost, setLost] = useState([]);
+  const [category, setCategory] = useState([]);
   const [AddModal, setAddModal] = useState(false);
 
   const openAddModal = () => setAddModal(!AddModal);
-  const [lost, setLost] = useState([]);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
 
-    // getLost
     getLost();
+    getCategory();
   }, []);
 
   // getlost
@@ -47,6 +48,46 @@ const Lost = () => {
       })
       .catch(() => {
         console.log("Lost kelmadi!!!");
+      })
+  }
+
+  // getCategory
+  const getCategory = () => {
+    let config = {
+      headers: { Authorization: sessionStorage.getItem('jwtToken') }
+    }
+    axios.get(api + "category/", config)
+      .then(res => setCategory(res.data))
+      .catch(() => console.log("category kelmadi!!!"))
+  }
+
+  // addLostItem
+  const addLostItem = () => {
+    const addData = new FormData();
+    addData.append("file", byId("file").files[0]);
+    addData.append("name", byId("name").value);
+    addData.append("description", byId("description").value);
+    addData.append("contact_info", byId("contact_info").value);
+    addData.append("type", "LOST");
+    addData.append("latitude", null);
+    addData.append("longitude", null);
+    addData.append("category ", byId("category").value);
+
+    axios.post(api + "item/", {
+      headers: {
+        Authorization: sessionStorage.getItem('jwtToken'),
+      }
+    })
+      .then(() => {
+        openAddModal();
+        getLost();
+        toast.success("Lost item muvaffaqiyatli qo'shildi✔")
+      })
+      .catch(() => {
+        toast.error("Lost item qo'shishda xatolik yuz berdi!!!")
+        for (const addDataKey of addData) {
+          console.log(addDataKey)
+        }
       })
   }
 
@@ -86,8 +127,8 @@ const Lost = () => {
                       images and you're good to go.
                     </p>
                     <div className="btn-wrapper">
-                    <Button
-                      onClick={openAddModal}
+                      <Button
+                        onClick={openAddModal}
                         className="btn-icon mb-3 mb-sm-0 w-50"
                         color="info">
                         <span className="btn-inner--icon mr-1">
@@ -156,31 +197,34 @@ const Lost = () => {
       </main>
       <SimpleFooter />
 
+      {/* addLostModal */}
       <Modal isOpen={AddModal} centered size="lg">
-                <ModalHeader
-                    toggle={openAddModal}
-                    className="text-dark fs-4 fw-bolder">Add found item</ModalHeader>
-                <ModalBody className="techer__modal-body">
-                    <Input className="mb-3" id="name" placeholder="Name"/>
-                    <Input className="mb-3" id="description" placeholder="Description"/>
-                    <Input type="file" className="form-control mb-3" id="file"/>
-                    <textarea className="form-control" type="email" id="email" placeholder="Contact info"/>
-                    <select class="form-select form-control mt-3" id="category">
-                      <option selected disabled>Category</option>
-                    </select>
-
-                </ModalBody>
-                <ModalFooter>
-                    <Button
-                        boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-                       className="bg-danger"
-                        onClick={openAddModal}>Close</Button>
-                    <Button
-                        className="bg-success"
-                        boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-                        onClick={openAddModal}>Save</Button>
-                </ModalFooter>
-            </Modal>
+        <ModalHeader
+          toggle={openAddModal}
+          className="text-dark fs-4 fw-bolder">Add Lost</ModalHeader>
+        <ModalBody>
+          <Input type="file" className="form-control mb-3" id="file" />
+          <Input className="mb-3" id="name" placeholder="Name" />
+          <Input className="mb-3" id="description" placeholder="Description" />
+          <textarea className="form-control" id="contact_info" placeholder="Contact info" />
+          <select class="form-control mt-3" id="category">
+            <option selected disabled>Category</option>
+            {category && category.map((item, i) =>
+              <option key={i} value={item.id}>{item.name}</option>
+            )}
+          </select>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+            className="bg-danger"
+            onClick={openAddModal}>Close</Button>
+          <Button
+            className="bg-success"
+            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+            onClick={addLostItem}>Save</Button>
+        </ModalFooter>
+      </Modal>
     </>
   );
 };
