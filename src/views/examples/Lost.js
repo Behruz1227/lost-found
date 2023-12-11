@@ -30,7 +30,6 @@ const Lost = () => {
   const [DeleteModal, setDeleteModal] = useState(false);
 
   const openAddModal = () => setAddModal(!AddModal);
-  const [lost, setLost] = useState([]);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
