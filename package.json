@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/Behruz1227/lost-found/issues"
   },
-  "homepage": "https://github.com/Behruz1227/lost-found/blob/main/src/views/default.js",
+  "homepage": "lost-and-found",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
