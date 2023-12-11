@@ -34,11 +34,7 @@ const Lost = () => {
     }
     axios.get(api + "item/", config)
       .then(res => {
-        if (res.data.find(t => t.type === "LOST")) {
-          setLost(res.data)
-        } else {
-          toast.error("Xali lost haqida ma'lumot yuq!!!")
-        }
+        setLost(res.data.filter(t => t.type == "LOST"))
       })
       .catch(() => {
         console.log("Lost kelmadi!!!");
@@ -104,8 +100,8 @@ const Lost = () => {
                     </div>
                   </Col>
                   <Col className="text-center" lg="6">
-                      <img className="py-4" style={{objectFit: "cover",  height: "400px"}} src={require("assets/img/theme/landing.png")} alt="" />
-                    </Col>
+                    <img className="py-4" style={{ objectFit: "cover", height: "400px" }} src={require("assets/img/theme/landing.png")} alt="" />
+                  </Col>
                 </Row>
               </div>
             </Container>
@@ -154,7 +150,7 @@ const Lost = () => {
                       </Card>
                     </Col>
                   )}
-                  
+
                 </Row>
               </Col>
             </Row>
