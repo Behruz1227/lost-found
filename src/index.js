@@ -25,7 +25,6 @@ root.render(
     <Routes>
       <Route path="/" exact element={<Default />} />
       <Route path="/home" exact element={<Index />} />
-      <Route path="/about" exact element={<About />} />
       <Route path="/found" exact element={<Found />} />
       <Route path="/lost" exact element={<Lost />} />
       <Route path="/single/about" exact element={<Single />} />
