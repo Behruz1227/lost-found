@@ -26,6 +26,7 @@ const Lost = () => {
 
   const [lost, setLost] = useState([]);
   const [category, setCategory] = useState([]);
+  const [lostId, setLostId] = useState([]);
   const [AddModal, setAddModal] = useState(false);
   const [EditModal, setEditModal] = useState(false);
   const [DeleteModal, setDeleteModal] = useState(false);
@@ -193,12 +194,18 @@ const Lost = () => {
                                 Learn more
                               </Button>
                             </Col>
-                            <Col style={{marginTop: "2rem"}}>
-                              <Link className="mr-3" onClick={openDeleteModal}>
-                                <Icon icon="ic:baseline-delete" width="25" />
-                              </Link>
-                              <Link onClick={openEditModal}>
+                            <Col style={{ marginTop: "2rem" }}>
+                              <Link onClick={() => {
+                                openEditModal();
+                                setLostId(item);
+                              }}>
                                 <Icon icon="uiw:edit" width="23" />
+                              </Link>
+                              <Link className="mr-3" onClick={() => {
+                                openDeleteModal();
+                                setLostId(item)
+                              }}>
+                                <Icon icon="ic:baseline-delete" width="25" />
                               </Link>
                             </Col>
                           </Row>
