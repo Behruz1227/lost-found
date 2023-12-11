@@ -48,7 +48,7 @@ const Lost = () => {
       .catch(() => {
         console.log("Lost kelmadi!!!");
       })
-  }
+       }
 
   // go about
   const goAbout = () => byId("linkLost").click();
