@@ -16,6 +16,7 @@ import Profile from "./views/examples/Profile.js";
 import Register from "./views/examples/Register.js";
 import Single from "./views/examples/Sngle";
 import Code from "./views/examples/Code";
+import About from "views/examples/about.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -24,6 +25,7 @@ root.render(
     <Routes>
       <Route path="/" exact element={<Default />} />
       <Route path="/home" exact element={<Index />} />
+      <Route path="/about" exact element={<About />} />
       <Route path="/found" exact element={<Found />} />
       <Route path="/lost" exact element={<Lost />} />
       <Route path="/single/about" exact element={<Single />} />
