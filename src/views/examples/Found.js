@@ -4,12 +4,6 @@ import {
   Button,
   Card,
   CardBody,
-  CardImg,
-  FormGroup,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
   Container,
   Row,
   Col,
@@ -82,6 +76,9 @@ const Found = () => {
                           </span>
                         </Button>
                       </div>
+                    </Col>
+                    <Col className="text-center" lg="6">
+                      <img className="pb-4" style={{objectFit: "cover",  height: "400px"}} src={require("assets/img/theme/profile.png")} alt="" />
                     </Col>
                   </Row>
                 </div>
