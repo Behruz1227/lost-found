@@ -68,19 +68,19 @@ const Lost = () => {
   // addLostItem
   const addLostItem = () => {
     const addData = new FormData();
-    addData.append("file", byId("file").files[0]);
+    addData.append("image", byId("file").files[0]);
     addData.append("name", byId("name").value);
     addData.append("description", byId("description").value);
     addData.append("contact_info", byId("contact_info").value);
     addData.append("type", "LOST");
-    addData.append("latitude", null);
-    addData.append("longitude", null);
+    addData.append("latitude", 0);
+    addData.append("longitude", 0);
     addData.append("category ", byId("category").value);
 
-    axios.post(api + "item/", {
+    axios.post(api + "item/", addData, {
       headers: {
         Authorization: sessionStorage.getItem('jwtToken'),
-      }
+      },
     })
       .then(() => {
         openAddModal();
