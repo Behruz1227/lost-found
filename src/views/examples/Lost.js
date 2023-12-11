@@ -49,7 +49,7 @@ const Lost = () => {
       .catch(() => {
         console.log("Lost kelmadi!!!");
       })
-  }
+       }
 
   // getCategory
   const getCategory = () => {
