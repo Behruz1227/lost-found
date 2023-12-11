@@ -11,21 +11,28 @@ import {
   ModalBody,
   ModalFooter,
   Input,
-  Label,
 } from "reactstrap";
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
+import axios from "axios";
+import { api } from "components/api/api";
 // import CardsFooter from "components/Footers/CardsFooter.js";
 // import Download from "../IndexSections/Download.js";
 
 const Found = () => {
     const [AddModal, setAddModal] = useState(false);
+    const [found, setFound] = useState([]);
 
-    
     useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
   }, []);
+
+  // getFound
+  const getFound = () => {
+    
+    axios.get(api + "item/", )
+  }
 
   const openAddModal = () => setAddModal(!AddModal);
 
