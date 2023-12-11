@@ -192,21 +192,6 @@ const Lost = () => {
                                 Learn more
                               </Button>
                             </Col>
-                            <Col>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col className="col-8">
-                              <Button
-                                onClick={() => {
-                                  goAbout();
-                                  sessionStorage.setItem("lostAbout", item.id);
-                                }}
-                                className="mt-4"
-                                color="primary">
-                                Learn more
-                              </Button>
-                            </Col>
                             <Col className="mt-4">
                               <Link onClick={openDeleteModal}>
                                 <i className="mt-2 fa fa-trash" style={{ fontSize: "20px" }} />
@@ -287,7 +272,7 @@ const Lost = () => {
       <Modal isOpen={DeleteModal} centered size="lg">
         <ModalHeader
           toggle={openDeleteModal}
-          className="text-dark fs-4 fw-bolder">Delete lost item</ModalHeader>
+          className="text-dark fs-4 fw-bolder">Delete Lost</ModalHeader>
         <ModalBody className="techer__modal-body">
           Delete this item
         </ModalBody>
