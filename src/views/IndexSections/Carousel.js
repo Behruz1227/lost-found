@@ -1,8 +1,36 @@
-import React from "react";
-import { Button, Container, Row, Col, UncontrolledCarousel } from "reactstrap";
+import axios from "axios";
+import { api } from "../../components/api/api";
+import React, { useEffect, useState } from "react";
+import {
+  Container,
+  Row,
+  Col
+} from "reactstrap";
+import { toast } from "react-toastify";
 
+const Carousel = () => {
+  const [lostAbout, setLostAbout] = useState([]);
 
-const Carousel = (src, des, ) => {
+  useEffect(() => {
+    getLostAbout();
+  }, []);
+
+  // get lost about
+  const getLostAbout = () => {
+    let lostAboutId = sessionStorage.getItem("lostAbout");
+    let config = {
+      headers: { Authorization: sessionStorage.getItem('jwtToken') }
+    }
+    axios.get(api + "item/", config)
+      .then(res => {
+        setLostAbout(res.data.find(i => i.id == lostAboutId))
+      })
+      .catch(() => toast.warning("Ma'lumot kelishda kechikish yuz berdi!!!"))
+  }
+
+  // ulanishi kerak bulgan narsalar, bularning frontend i yozilmagan
+  // contact_info: "fdsgbr", date: "2023-12-08", latitude, longitude, type: "LOST"
+
   return (
     <>
       <section className="section section-shaped pt-5">
@@ -18,23 +46,22 @@ const Carousel = (src, des, ) => {
           <Row className="justify-content-between align-items-center ">
             <Col className="mb-5 mb-lg-0" lg="5">
               <h1 className="text-white font-weight-light">
-                Bootstrap carousel
+                {lostAbout.name}
               </h1>
               <p className="lead text-white mt-4">
-                Argon Design System comes with four pre-built pages to help
-                you get started faster. You can change the text and images and
-                you're good to go.
+                {lostAbout.description}
               </p>
-            
             </Col>
             <Col className="mb-lg-auto" lg="6">
               <div className="rounded shadow-lg overflow-hidden transform-perspective-right">
-                <img className="img-fluid " style={{objectFit: "cover"}} src={require("assets/img/theme/img-2-1200x1000.jpg")} alt="" />
+                <img 
+                className="img-fluid" 
+                style={{ objectFit: "cover" }} 
+                src={lostAbout.image} alt="img" />
               </div>
             </Col>
           </Row>
         </Container>
-        {/* SVG separator */}
       </section>
     </>
   );
