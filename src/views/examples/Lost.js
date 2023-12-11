@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { api, byId } from "../../components/api/api";
 import { ToastContainer, toast } from "react-toastify";
+import { Icon } from "@iconify/react";
 // import CardsFooter from "components/Footers/CardsFooter.js";
 // import Download from "../IndexSections/Download.js";
 
@@ -192,12 +193,12 @@ const Lost = () => {
                                 Learn more
                               </Button>
                             </Col>
-                            <Col className="mt-4">
-                              <Link onClick={openDeleteModal}>
-                                <i className="mt-2 fa fa-trash" style={{ fontSize: "20px" }} />
+                            <Col style={{marginTop: "2rem"}}>
+                              <Link className="mr-3" onClick={openDeleteModal}>
+                                <Icon icon="ic:baseline-delete" width="25" />
                               </Link>
                               <Link onClick={openEditModal}>
-                                <i className="mt-2 mx-3 fa fa-edit" style={{ fontSize: "20px" }} />
+                                <Icon icon="uiw:edit" width="23" />
                               </Link>
                             </Col>
                           </Row>
