@@ -103,6 +103,9 @@ const Lost = () => {
                       </Button>
                     </div>
                   </Col>
+                  <Col className="text-center" lg="6">
+                      <img className="py-4" style={{objectFit: "cover",  height: "400px"}} src={require("assets/img/theme/landing.png")} alt="" />
+                    </Col>
                 </Row>
               </div>
             </Container>
@@ -151,6 +154,7 @@ const Lost = () => {
                       </Card>
                     </Col>
                   )}
+                  
                 </Row>
               </Col>
             </Row>
