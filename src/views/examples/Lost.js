@@ -30,6 +30,8 @@ const Lost = () => {
   const [DeleteModal, setDeleteModal] = useState(false);
 
   const openAddModal = () => setAddModal(!AddModal);
+  const openEditModal = () => setEditModal(!EditModal);
+  const openDeleteModal = () => setDeleteModal(!DeleteModal);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -178,8 +180,10 @@ const Lost = () => {
                           <h6 className="text-primary mt-4 text-uppercase">
                             {item.name}
                           </h6>
-                          <Row>
-                          <Col className="col-8">
+                          
+                         
+                            <Row>
+                            <Col className="col-8">   
                           <Button
                             onClick={() => {
                               goAbout();
@@ -189,11 +193,18 @@ const Lost = () => {
                             color="primary">
                             Learn more
                           </Button>
+                            </Col>
+                            <Col className="mt-4">
+                            <Link onClick={openDeleteModal}>
+                              <i className="mt-2 fa fa-trash" style={{fontSize: "20px"}}/>
+                            </Link>
+                            <Link onClick={openEditModal}>
+                              <i className="mt-2 mx-3 fa fa-edit" style={{fontSize: "20px"}}/>
+                            </Link>
                           </Col>
-                          <Col>
-                            
-                          </Col>
-                          </Row>
+                            </Row>
+                         
+                          
                         </CardBody>
                       </Card>
                     </Col>
@@ -210,7 +221,7 @@ const Lost = () => {
       <Modal isOpen={AddModal} centered size="lg">
                 <ModalHeader
                     toggle={openAddModal}
-                    className="text-dark fs-4 fw-bolder">Add found item</ModalHeader>
+                    className="text-dark fs-4 fw-bolder">Add lost item</ModalHeader>
                 <ModalBody className="techer__modal-body">
                     <Input className="mb-3" id="name" placeholder="Name"/>
                     <Input className="mb-3" id="description" placeholder="Description"/>
@@ -230,6 +241,52 @@ const Lost = () => {
                         className="bg-success"
                         boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
                         onClick={openAddModal}>Save</Button>
+                </ModalFooter>
+            </Modal>
+
+            <Modal isOpen={EditModal} centered size="lg">
+                <ModalHeader
+                    toggle={openEditModal}
+                    className="text-dark fs-4 fw-bolder">Edit lost item</ModalHeader>
+                <ModalBody className="techer__modal-body">
+                    <Input className="mb-3" id="name" placeholder="Name"/>
+                    <Input className="mb-3" id="description" placeholder="Description"/>
+                    <Input type="file" className="form-control mb-3" id="file"/>
+                    <textarea className="form-control" type="email" id="email" placeholder="Contact info"/>
+                    <select class="form-select form-control mt-3" id="category">
+                      <option selected disabled>Category</option>
+                    </select>
+
+                </ModalBody>
+                <ModalFooter>
+                    <Button
+                        boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+                       className="bg-danger"
+                        onClick={openEditModal}>Close</Button>
+                    <Button
+                        className="bg-success"
+                        boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+                        onClick={openEditModal}>Save</Button>
+                </ModalFooter>
+            </Modal>
+
+
+            <Modal isOpen={DeleteModal} centered size="lg">
+                <ModalHeader
+                    toggle={openDeleteModal}
+                    className="text-dark fs-4 fw-bolder">Delete lost item</ModalHeader>
+                <ModalBody className="techer__modal-body">
+                  Delete this item
+                </ModalBody>
+                <ModalFooter>
+                    <Button
+                        boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+                       className="bg-danger"
+                        onClick={openDeleteModal}>Close</Button>
+                    <Button
+                        className="bg-success"
+                        boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+                        onClick={openDeleteModal}>OK</Button>
                 </ModalFooter>
             </Modal>
     </>
