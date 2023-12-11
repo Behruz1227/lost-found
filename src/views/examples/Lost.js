@@ -148,7 +148,6 @@ const Lost = () => {
                       </Card>
                     </Col>
                   )}
-
                 </Row>
               </Col>
             </Row>
