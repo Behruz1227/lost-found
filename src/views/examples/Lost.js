@@ -91,10 +91,50 @@ const Lost = () => {
       })
       .catch(() => {
         toast.error("Lost item qo'shishda xatolik yuz berdi!!!")
-        for (const addDataKey of addData) {
-          console.log(addDataKey)
-        }
       })
+  }
+
+  // editLostItem
+  const editLostItem = () => {
+    const editData = new FormData();
+    editData.append("image", byId("file").files[0]);
+    editData.append("name", byId("name").value);
+    editData.append("description", byId("description").value);
+    editData.append("contact_info", byId("contact_info").value);
+    editData.append("type", "LOST");
+    editData.append("latitude", 0);
+    editData.append("longitude", 0);
+    editData.append("category ", byId("category").value);
+    editData.append("id", lostId.id);
+
+    axios.put(api + "item" + lostId.id + "/", editData, {
+      headers: {
+        Authorization: sessionStorage.getItem('jwtToken'),
+      },
+    })
+      .then(() => {
+        openEditModal();
+        getLost();
+        toast.success("Lost item muvaffaqiyatli taxrirlandi✔")
+      })
+      .catch(() => {
+        toast.error("Lost item taxrirlashda xatolik yuz berdi!!!")
+      })
+  }
+
+  // deleteLostItem
+  const deleteLostItem = () => {
+    axios.delete(api + "item" + lostId.id + "/", {
+      headers: {
+        Authorization: sessionStorage.getItem("jwtToken"),
+      },
+    })
+      .then(() => {
+        toast.success("Lost item o'chirildi!!!");
+        openDeleteModal();
+        getLost();
+      })
+      .catch(() => toast.error("Lost item o'chirishda xatolik yuz berdi!!!"))
   }
 
   // go about
@@ -195,13 +235,13 @@ const Lost = () => {
                               </Button>
                             </Col>
                             <Col style={{ marginTop: "2rem" }}>
-                              <Link onClick={() => {
+                              <Link className="mr-3" onClick={() => {
                                 openEditModal();
                                 setLostId(item);
                               }}>
                                 <Icon icon="uiw:edit" width="23" />
                               </Link>
-                              <Link className="mr-3" onClick={() => {
+                              <Link onClick={() => {
                                 openDeleteModal();
                                 setLostId(item)
                               }}>
@@ -256,12 +296,27 @@ const Lost = () => {
           toggle={openEditModal}
           className="text-dark fs-4 fw-bolder">Edit Lost</ModalHeader>
         <ModalBody className="techer__modal-body">
-          <Input className="mb-3" id="name" placeholder="Name" />
-          <Input className="mb-3" id="description" placeholder="Description" />
           <Input type="file" className="form-control mb-3" id="file" />
-          <textarea className="form-control" type="email" id="email" placeholder="Contact info" />
-          <select class="form-select form-control mt-3" id="category">
+          <Input
+            id="name"
+            className="mb-3"
+            placeholder="Name"
+            defaultValue={lostId && lostId.name} />
+          <Input
+            id="contact_info"
+            className="mb-3"
+            placeholder="Contact info"
+            defaultValue={lostId && lostId.contact_info} />
+          <textarea
+            id="description"
+            className="form-control"
+            placeholder="Description"
+            defaultValue={lostId && lostId.description} />
+          <select class="form-control mt-3" id="category">
             <option selected disabled>Category</option>
+            {category && category.map((item, i) =>
+              <option key={i} value={item.id}>{item.name}</option>
+            )}
           </select>
         </ModalBody>
         <ModalFooter>
@@ -272,7 +327,7 @@ const Lost = () => {
           <Button
             className="bg-success"
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={openEditModal}>Save</Button>
+            onClick={editLostItem}>Save</Button>
         </ModalFooter>
       </Modal>
 
@@ -282,7 +337,7 @@ const Lost = () => {
           toggle={openDeleteModal}
           className="text-dark fs-4 fw-bolder">Delete Lost</ModalHeader>
         <ModalBody className="techer__modal-body">
-          Delete this item
+          {lostId.name} ni o'chirishga ishonchingiz komilmi?
         </ModalBody>
         <ModalFooter>
           <Button
@@ -292,7 +347,7 @@ const Lost = () => {
           <Button
             className="bg-success"
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={openDeleteModal}>OK</Button>
+            onClick={deleteLostItem}>Yes</Button>
         </ModalFooter>
       </Modal>
     </>
