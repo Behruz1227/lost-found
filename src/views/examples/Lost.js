@@ -52,9 +52,7 @@ const Lost = () => {
       .then(res => {
         setLost(res.data.filter(t => t.type == "LOST"))
       })
-      .catch(() => {
-        console.log("Lost kelmadi!!!");
-      })
+      .catch(() => console.log("Lost kelmadi!!!"))
   }
 
   // getCategory
@@ -142,7 +140,7 @@ const Lost = () => {
 
   return (
     <>
-      <Link to="/single/about" id="linkLost"></Link>
+      <Link to="/lost/about" id="linkLost"></Link>
       <ToastContainer />
       <DemoNavbar />
       <main>

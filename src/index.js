@@ -8,15 +8,15 @@ import "assets/scss/argon-design-system-react.scss?v1.1.0";
 import 'react-toastify/dist/ReactToastify.css';
 
 import Index from "./views/Index.js";
-import Default from "./views/default";
-import Found from "./views/examples/Found";
-import Lost from "./views/examples/Lost";
+import Default from "./views/default.js";
+import Found from "./views/examples/Found.js";
+import Lost from "./views/examples/Lost.js";
 import Login from "./views/examples/Login.js";
 import Profile from "./views/examples/Profile.js";
 import Register from "./views/examples/Register.js";
-import Single from "./views/examples/Sngle";
-import Code from "./views/examples/Code";
-import About from "views/examples/about.js";
+import Single from "./views/examples/Sngle.js";
+import Code from "./views/examples/Code.js";
+import SingleFound from "./views/examples/SingleFound.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -27,7 +27,8 @@ root.render(
       <Route path="/home" exact element={<Index />} />
       <Route path="/found" exact element={<Found />} />
       <Route path="/lost" exact element={<Lost />} />
-      <Route path="/single/about" exact element={<Single />} />
+      <Route path="/lost/about" exact element={<Single />} />
+      <Route path="/found/about" exact element={<SingleFound />} />
       <Route path="/login-page" exact element={<Login />} />
       <Route path="/profile-page" exact element={<Profile />} />
       <Route path="/register-page" exact element={<Register />} />
