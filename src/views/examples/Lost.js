@@ -170,16 +170,21 @@ const Lost = () => {
                       help you get started faster. You can change the text and
                       images and you're good to go.
                     </p>
-                    <div className="btn-wrapper">
+                    <div 
+                    style={{display: "flex",justifyContent: "space-between"}}
+                    className="btn-wrapper">
                       <Button
                         onClick={openAddModal}
-                        className="btn-icon mb-3 mb-sm-0 w-50"
+                        className="btn-icon mb-3 mb-sm-0"
                         color="info">
                         <span className="btn-inner--icon mr-1">
                           <i className="fa fa-plus" />
                         </span>
                         <span className="btn-inner--text">Add Item</span>
                       </Button>
+                      <Input
+                      style={{width: "50%"}}
+                      placeholder="🔍 search" />
                     </div>
                   </Col>
                   <Col className="text-center" lg="6">
