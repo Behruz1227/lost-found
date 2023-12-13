@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
-import Carousel from "views/IndexSections/Carousel.js";
+import Carousel from "../IndexSections/Carousel.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
 // import { Container, Row } from "reactstrap";
 // import CardsFooter from "components/Footers/CardsFooter.js";

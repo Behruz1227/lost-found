@@ -15,34 +15,126 @@ import {
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
 import axios from "axios";
-import { api } from "components/api/api";
+import { api, byId } from "../../components/api/api";
 import { Link } from "react-router-dom";
-// import CardsFooter from "components/Footers/CardsFooter.js";
-// import Download from "../IndexSections/Download.js";
+import { Icon } from "@iconify/react";
+import { ToastContainer, toast } from "react-toastify";
 
 const Found = () => {
-  const [AddModal, setAddModal] = useState(false);
-  const [EditModal, setEditModal] = useState(false);
-  const [DeleteModal, setDeleteModal] = useState(false);
+  const [addModal, setAddModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [found, setFound] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [foundId, setFoundId] = useState([]);
 
-  const openAddModal = () => setAddModal(!AddModal);
-  const openEditModal = () => setEditModal(!EditModal);
-  const openDeleteModal = () => setDeleteModal(!DeleteModal);
+  const openAddModal = () => setAddModal(!addModal);
+  const openEditModal = () => setEditModal(!editModal);
+  const openDeleteModal = () => setDeleteModal(!deleteModal);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
+
+    getFound();
+    getCategory();
   }, []);
 
   // getFound
   const getFound = () => {
-
-    axios.get(api + "item/",)
+    axios.get(api + "item/", {
+      headers: {
+        Authorization: sessionStorage.getItem("jwtToken"),
+      },
+    })
+      .then(res => setFound(res.data.filter(t => t.type == "FOUND")))
+      .catch(() => console.log("Found kelmadi!!!"))
   }
+
+  // getCategory
+  const getCategory = () => {
+    axios.get(api + "category/", {
+      headers: { Authorization: sessionStorage.getItem('jwtToken') }
+    })
+      .then(res => setCategory(res.data))
+      .catch(() => console.log("category kelmadi!!!"))
+  }
+
+  // addFoundItem
+  const addFoundItem = () => {
+    const addData = new FormData();
+    addData.append("image", byId("file").files[0]);
+    addData.append("name", byId("name").value);
+    addData.append("description", byId("description").value);
+    addData.append("contact_info", byId("contact_info").value);
+    addData.append("type", "FOUND");
+    addData.append("latitude", 0);
+    addData.append("longitude", 0);
+    addData.append("category ", byId("category").value);
+
+    axios.post(api + "item/", addData, {
+      headers: {
+        Authorization: sessionStorage.getItem('jwtToken'),
+      },
+    })
+      .then(() => {
+        openAddModal();
+        getFound();
+        toast.success("Found item muvaffaqiyatli qo'shildi✔")
+      })
+      .catch(() => toast.error("Found item qo'shishda xatolik yuz berdi!!!"))
+  }
+
+  // editFoundItem
+  const editFoundItem = () => {
+    const editData = new FormData();
+    editData.append("image", byId("file").files[0]);
+    editData.append("name", byId("name").value);
+    editData.append("description", byId("description").value);
+    editData.append("contact_info", byId("contact_info").value);
+    editData.append("type", "FOUND");
+    editData.append("latitude", 0);
+    editData.append("longitude", 0);
+    editData.append("category ", byId("category").value);
+    editData.append("id", foundId.id);
+
+    axios.put(api + "item" + foundId.id + "/", editData, {
+      headers: {
+        Authorization: sessionStorage.getItem('jwtToken'),
+      },
+    })
+      .then(() => {
+        openEditModal();
+        getFound();
+        toast.success("Found item muvaffaqiyatli taxrirlandi✔")
+      })
+      .catch(() => {
+        toast.error("Found item taxrirlashda xatolik yuz berdi!!!")
+      })
+  }
+
+  // deleteFoundItem
+  const deleteFoundItem = () => {
+    axios.delete(api + "item" + foundId.id + "/", {
+      headers: {
+        Authorization: sessionStorage.getItem("jwtToken"),
+      },
+    })
+      .then(() => {
+        toast.success("Found item o'chirildi!!!");
+        openDeleteModal();
+        getFound();
+      })
+      .catch(() => toast.error("Found item o'chirishda xatolik yuz berdi!!!"))
+  }
+
+  // goFoundInfo
+  const goFoundInfo = () => byId("goFoundInfo").click();
 
   return (
     <>
+      <Link to="/found/about" id="goFoundInfo"></Link>
+      <ToastContainer />
       <DemoNavbar />
       <main>
         <div className="position-relative">
@@ -110,38 +202,49 @@ const Found = () => {
             <Row className="justify-content-center">
               <Col lg="12">
                 <Row className="row-grid">
-                  <Col lg="4" className="mb-5">
-                    <Card className="card-lift--hover shadow border-0">
-                      <CardBody className="pb-5">
-                        <img
-                          alt="..."
-                          className="img-fluid "
-                          src={require("assets/img/theme/img-1-1200x1000.jpg")}
-                          style={{ width: "100%", height: "230px", objectFit: "cover" }} />
-                        <h6 className="text-primary mt-4 text-uppercase">
-                          Download Argon
-                        </h6>
-                        <Row>
-                          <Col className="col-8">
-                            <Button
-
-                              className="mt-4"
-                              color="primary">
-                              Learn more
-                            </Button>
-                          </Col>
-                          <Col className="mt-4">
-                            <Link onClick={openDeleteModal}>
-                              <i className="mt-2 fa fa-trash" style={{ fontSize: "20px" }} />
-                            </Link>
-                            <Link onClick={openEditModal}>
-                              <i className="mt-2 mx-3 fa fa-edit" style={{ fontSize: "20px" }} />
-                            </Link>
-                          </Col>
-                        </Row>
-                      </CardBody>
-                    </Card>
-                  </Col>
+                  {found && found.map((item, i) =>
+                    <Col lg="4" className="mb-5" key={i}>
+                      <Card className="card-lift--hover shadow border-0">
+                        <CardBody className="pb-5">
+                          <img
+                            src={item.image}
+                            alt="..."
+                            className="img-fluid "
+                            style={{ width: "100%", height: "230px", objectFit: "cover" }} />
+                          <h6 className="text-primary mt-4 text-uppercase">
+                            {item.name}
+                          </h6>
+                          <Row>
+                            <Col className="col-8">
+                              <Button
+                                onClick={() => {
+                                  goFoundInfo();
+                                  sessionStorage.setItem("foundAbout", item.id);
+                                }}
+                                className="mt-4"
+                                color="primary">
+                                Learn more
+                              </Button>
+                            </Col>
+                            <Col style={{ marginTop: "2rem" }}>
+                              <Link className="mr-3" onClick={() => {
+                                openEditModal();
+                                setFoundId(item);
+                              }}>
+                                <Icon icon="uiw:edit" width="23" />
+                              </Link>
+                              <Link onClick={() => {
+                                openDeleteModal();
+                                setFoundId(item);
+                              }}>
+                                <Icon icon="ic:baseline-delete" width="25" />
+                              </Link>
+                            </Col>
+                          </Row>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                  )}
                 </Row>
               </Col>
             </Row>
@@ -151,17 +254,31 @@ const Found = () => {
       <SimpleFooter />
 
       {/* addModal */}
-      <Modal isOpen={AddModal} centered size="lg">
+      <Modal isOpen={addModal} centered size="lg">
         <ModalHeader
           toggle={openAddModal}
-          className="text-dark fs-4 fw-bolder">Add found item</ModalHeader>
+          className="text-dark fs-4 fw-bolder">Add Found</ModalHeader>
         <ModalBody className="techer__modal-body">
-          <Input className="mb-3" id="name" placeholder="Name" />
-          <Input className="mb-3" id="description" placeholder="Description" />
           <Input type="file" className="form-control mb-3" id="file" />
-          <textarea className="form-control" type="email" id="email" placeholder="Contact info" />
-          <select class="form-select form-control mt-3" id="category">
+          <Input
+            id="name"
+            className="mb-3"
+            placeholder="Name" />
+          <Input
+            id="contact_info"
+            className="mb-3"
+            placeholder="Contact info" />
+          <textarea
+            id="description"
+            className="form-control"
+            placeholder="Description" />
+          <select
+            id="category"
+            className="form-control mt-3">
             <option selected disabled>Category</option>
+            {category && category.map((item, i) =>
+              <option key={i} value={item.id}>{item.name}</option>
+            )}
           </select>
         </ModalBody>
         <ModalFooter>
@@ -172,22 +289,37 @@ const Found = () => {
           <Button
             className="bg-success"
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={openAddModal}>Save</Button>
+            onClick={addFoundItem}>Save</Button>
         </ModalFooter>
       </Modal>
 
       {/* editModal */}
-      <Modal isOpen={EditModal} centered size="lg">
+      <Modal isOpen={editModal} centered size="lg">
         <ModalHeader
           toggle={openEditModal}
-          className="text-dark fs-4 fw-bolder">Edit lost item</ModalHeader>
+          className="text-dark fs-4 fw-bolder">Edit Found</ModalHeader>
         <ModalBody className="techer__modal-body">
-          <Input className="mb-3" id="name" placeholder="Name" />
-          <Input className="mb-3" id="description" placeholder="Description" />
           <Input type="file" className="form-control mb-3" id="file" />
-          <textarea className="form-control" type="email" id="email" placeholder="Contact info" />
-          <select class="form-select form-control mt-3" id="category">
+          <Input
+            id="name"
+            className="mb-3"
+            placeholder="Name"
+            defaultValue={foundId && foundId.name} />
+          <Input
+            id="contact_info"
+            className="mb-3"
+            placeholder="Contact info"
+            defaultValue={foundId && foundId.contact_info} />
+          <textarea
+            id="description"
+            className="form-control"
+            placeholder="Description"
+            defaultValue={foundId && foundId.description} />
+          <select class="form-control mt-3" id="category">
             <option selected disabled>Category</option>
+            {category && category.map((item, i) =>
+              <option key={i} value={item.id}>{item.name}</option>
+            )}
           </select>
         </ModalBody>
         <ModalFooter>
@@ -198,12 +330,12 @@ const Found = () => {
           <Button
             className="bg-success"
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={openEditModal}>Save</Button>
+            onClick={editFoundItem}>Save</Button>
         </ModalFooter>
       </Modal>
 
       {/* delete modal */}
-      <Modal isOpen={DeleteModal} centered size="lg">
+      <Modal isOpen={deleteModal} centered size="lg">
         <ModalHeader
           toggle={openDeleteModal}
           className="text-dark fs-4 fw-bolder">Delete lost item</ModalHeader>
@@ -218,7 +350,7 @@ const Found = () => {
           <Button
             className="bg-success"
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={openDeleteModal}>OK</Button>
+            onClick={deleteFoundItem}>Yes</Button>
         </ModalFooter>
       </Modal>
     </>

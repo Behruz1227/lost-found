@@ -28,9 +28,6 @@ const Carousel = () => {
       .catch(() => toast.warning("Ma'lumot kelishda kechikish yuz berdi!!!"))
   }
 
-  // ulanishi kerak bulgan narsalar, bularning frontend i yozilmagan
-  // contact_info: "fdsgbr", date: "2023-12-08", latitude, longitude, type: "LOST"
-
   return (
     <>
       <section className="section section-shaped pt-5">
@@ -45,19 +42,36 @@ const Carousel = () => {
         <Container className="py-lg">
           <Row className="justify-content-between align-items-center ">
             <Col className="mb-5 mb-lg-0" lg="5">
-              <h1 className="text-white font-weight-light">
-                {lostAbout.name}
+              <h1
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+                className="text-white font-weight-light">
+                <span>
+                  <span style={{ fontWeight: "bold", marginRight: ".5rem" }}>Name:</span>
+                  {lostAbout.name}
+                </span>
+                <small style={{ fontSize: ".8rem" }}>
+                  <span style={{ fontWeight: "bold", marginRight: ".5rem" }}>Added time:</span>
+                  {lostAbout.date}
+                </small>
+                <span style={{ fontSize: ".9rem" }}>
+                  <span style={{ fontWeight: "bold", marginRight: ".5rem" }}>Contact information:</span>
+                  {lostAbout.contact_info}
+                </span>
               </h1>
               <p className="lead text-white mt-4">
+                <span style={{ fontWeight: "bold", marginRight: ".5rem" }}>Description:</span>
                 {lostAbout.description}
               </p>
             </Col>
             <Col className="mb-lg-auto" lg="6">
               <div className="rounded shadow-lg overflow-hidden transform-perspective-right">
-                <img 
-                className="img-fluid" 
-                style={{ objectFit: "cover" }} 
-                src={lostAbout.image} alt="img" />
+                <img
+                  className="img-fluid"
+                  style={{ objectFit: "cover" }}
+                  src={lostAbout.image} alt="img" />
               </div>
             </Col>
           </Row>
