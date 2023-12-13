@@ -48,7 +48,7 @@ const DemoNavbar = () => {
   return (
     <>
       {/* about uchun link btn */}
-      <Link id="aboutBtn" to="/home"></Link>
+      <Link id="aboutBtn" to="/profile"></Link>
       <Link id="logout" to="/"></Link>
 
       <header className="header-global">
@@ -92,7 +92,7 @@ const DemoNavbar = () => {
                 <UncontrolledDropdown nav>
                   <DropdownToggle nav>
                     <i className="ni ni-ui-04 d-lg-none mr-1" />
-                    <span className="nav-link-inner--text" onClick={goAbout}>About</span>
+                    <span className="nav-link-inner--text" onClick={goAbout}>Profile</span>
                   </DropdownToggle>
                   {/* <DropdownMenu className="dropdown-menu-xl">
                     <div className="dropdown-menu-inner">

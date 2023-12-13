@@ -29,7 +29,7 @@ root.render(
       <Route path="/lost" exact element={<Lost />} />
       <Route path="/single/about" exact element={<Single />} />
       <Route path="/login-page" exact element={<Login />} />
-      <Route path="/profile-page" exact element={<Profile />} />
+      <Route path="/profile" exact element={<Profile />} />
       <Route path="/register-page" exact element={<Register />} />
       <Route path="/code" exact element={<Code />} />
       <Route path="*" element={<Navigate to="/" replace />} />
