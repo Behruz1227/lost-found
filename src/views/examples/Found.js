@@ -128,6 +128,13 @@ const Found = () => {
       .catch(() => toast.error("Found item o'chirishda xatolik yuz berdi!!!"))
   }
 
+  // search
+  const searchFound = () => {
+    let searchItem = byId("search").value
+    if (!!searchItem) axios.get(api + "item/?search=" + searchItem).then(res => setFound(res.data.filter(t => t.type == "FOUND")))
+    else getFound();
+  }
+
   // goFoundInfo
   const goFoundInfo = () => byId("goFoundInfo").click();
 
@@ -163,17 +170,23 @@ const Found = () => {
                       help you get started faster. You can change the text and
                       images and you're good to go.
                     </p>
-                    <div className="btn-wrapper">
+                    <div
+                      style={{ display: "flex", justifyContent: "space-between" }}
+                      className="btn-wrapper">
                       <Button
                         onClick={openAddModal}
-                        className="btn-icon mb-3 mb-sm-0 w-50"
+                        className="btn-icon mb-3 mb-sm-0"
                         color="info">
                         <span className="btn-inner--icon mr-1">
                           <i className="fa fa-plus" />
                         </span>
                         <span className="btn-inner--text">Add Item</span>
                       </Button>
-
+                      <Input
+                        id="search"
+                        onChange={searchFound}
+                        style={{ width: "50%" }}
+                        placeholder="🔍 search" />
                     </div>
                   </Col>
                   <Col className="text-center d-none d-lg-block" lg="6">
@@ -338,9 +351,9 @@ const Found = () => {
       <Modal isOpen={deleteModal} centered size="lg">
         <ModalHeader
           toggle={openDeleteModal}
-          className="text-dark fs-4 fw-bolder">Delete lost item</ModalHeader>
+          className="text-dark fs-4 fw-bolder">Delete Found</ModalHeader>
         <ModalBody className="techer__modal-body">
-          Delete this item
+          {foundId.name} ni o'chirishga ishonchingiz komilmi?
         </ModalBody>
         <ModalFooter>
           <Button

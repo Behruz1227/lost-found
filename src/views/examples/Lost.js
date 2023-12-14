@@ -135,6 +135,13 @@ const Lost = () => {
       .catch(() => toast.error("Lost item o'chirishda xatolik yuz berdi!!!"))
   }
 
+  // search
+  const searchLost = () => {
+    let searchItem = byId("search").value
+    if (!!searchItem) axios.get(api + "item/?search=" + searchItem).then(res => setLost(res.data.filter(t => t.type == "LOST")))
+    else getLost();
+  }
+
   // go about
   const goAbout = () => byId("linkLost").click();
 
@@ -170,9 +177,9 @@ const Lost = () => {
                       help you get started faster. You can change the text and
                       images and you're good to go.
                     </p>
-                    <div 
-                    style={{display: "flex",justifyContent: "space-between"}}
-                    className="btn-wrapper">
+                    <div
+                      style={{ display: "flex", justifyContent: "space-between" }}
+                      className="btn-wrapper">
                       <Button
                         onClick={openAddModal}
                         className="btn-icon mb-3 mb-sm-0"
@@ -183,8 +190,10 @@ const Lost = () => {
                         <span className="btn-inner--text">Add Item</span>
                       </Button>
                       <Input
-                      style={{width: "50%"}}
-                      placeholder="🔍 search" />
+                        id="search"
+                        onChange={searchLost}
+                        style={{ width: "50%" }}
+                        placeholder="🔍 search" />
                     </div>
                   </Col>
                   <Col className="text-center" lg="6">
