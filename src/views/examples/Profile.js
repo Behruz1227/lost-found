@@ -23,17 +23,9 @@ import { Icon } from "@iconify/react";
 import { byId } from "components/api/api";
 
 const Profile = () => {
-  useEffect(() => {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-    // eslint-disable-next-line
-    // Bu satır eslint tarafından önerilen bir kontrol, bu durumda kullanmak istediğimiz özellikten dolayı es geçiyoruz
-    // this.refs.main.scrollTop = 0;
 
-    getMe();
-    getCategory();
-    getItems();
-  }, []);
+
+  
 
   const [items, setitems] = useState([]);
   const [category, setCategory] = useState([]);
@@ -46,20 +38,43 @@ const Profile = () => {
   const openEditModal = () => setEditModal(!EditModal);
   const openDeleteModal = () => setDeleteModal(!DeleteModal);
 
-  const editLostItem = () => {
+  useEffect( () => {
+    document.documentElement.scrollTop = 0;
+    document.scrollingElement.scrollTop = 0;
+   
+    getMe();
+    getCategory();
+    getItems();
+  }, []);
+
+  function getMe() {
+    axios
+      .get(api + "current-user/", {
+        headers: {
+          Authorization: sessionStorage.getItem("jwtToken"),
+        },
+      })
+      .then((res) => {
+        setGetMe(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+
+  const editItemdata = () => {
     const editData = new FormData();
     editData.append("image", byId("file").files[0]);
     editData.append("name", byId("name").value);
     editData.append("description", byId("description").value);
     editData.append("contact_info", byId("contact_info").value);
-    editData.append("type", "LOST");
+    editData.append("type", itemId.type);
     editData.append("latitude", 0);
     editData.append("longitude", 0);
     editData.append("category ", byId("category").value);
-    editData.append("id", items.id);
+    editData.append("id", itemId.id);
 
     axios
-      .put(api + "item" + items.id + "/", editData, {
+      .put(api + "item" + itemId.id + "/", editData, {
         headers: {
           Authorization: sessionStorage.getItem("jwtToken"),
         },
@@ -74,6 +89,8 @@ const Profile = () => {
       });
   };
 
+
+
   // getCategory
   const getCategory = () => {
     let config = {
@@ -85,9 +102,9 @@ const Profile = () => {
       .catch(() => console.log("category kelmadi!!!"));
   };
 
-  const deleteLostItem = () => {
+  const deleteItemData = () => {
     axios
-      .delete(api + "item" + items.id + "/", {
+      .delete(api + "item" + itemId.id + "/", {
         headers: {
           Authorization: sessionStorage.getItem("jwtToken"),
         },
@@ -100,15 +117,7 @@ const Profile = () => {
       .catch(() => toast.error("Item o'chirishda xatolik yuz berdi!!!"));
   };
 
-  function getMe() {
-    axios
-      .get(api + "current-user/", config)
-      .then((res) => {
-        setGetMe(res.data);
-      })
-      .catch((err) => console.log(err));
-  }
-
+ 
   function getItems() {
     axios
       .get(api + "items/", {
@@ -120,6 +129,7 @@ const Profile = () => {
       .catch((err) => console.log(err));
   }
 
+  console.log(items);
   const goAbout = () => byId("linkLost").click();
 
   return (
@@ -286,7 +296,7 @@ const Profile = () => {
           toggle={openEditModal}
           className="text-dark fs-4 fw-bolder"
         >
-          Edit Lost
+          Edit item
         </ModalHeader>
         <ModalBody className="techer__modal-body">
           <Input type="file" className="form-control mb-3" id="file" />
@@ -331,7 +341,7 @@ const Profile = () => {
           <Button
             className="bg-success"
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={editLostItem}
+            onClick={editItemdata}
           >
             Save
           </Button>
@@ -360,7 +370,7 @@ const Profile = () => {
           <Button
             className="bg-success"
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={deleteLostItem}
+            onClick={deleteItemData}
           >
             Yes
           </Button>
