@@ -135,6 +135,25 @@ const Found = () => {
     else getFound();
   }
 
+  // category filter
+  const categoryFIlter = () => {
+    let categoryId = byId("categoryFilter").value
+    axios.get(api + "item/category/" + categoryId + "/", {
+      headers: { Authorization: sessionStorage.getItem("jwtToken") }
+    })
+      .then(res => setFound(res.data.filter(c => c.type == "FOUND")))
+      .catch(() => console.log("category filter ishlamadi!!!"))
+  }
+
+  // my lost filter
+  const myFoundFilter = () => {
+    axios.get(api + "items/", {
+      headers: { Authorization: sessionStorage.getItem("jwtToken") }
+    })
+      .then(res => setFound(res.data.filter(i => i.type == "FOUND")))
+      .catch(() => console.log("my items kelamdi!!!"))
+  }
+
   // goFoundInfo
   const goFoundInfo = () => byId("goFoundInfo").click();
 
@@ -214,6 +233,43 @@ const Found = () => {
           <Container>
             <Row className="justify-content-center">
               <Col lg="12">
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "3rem",
+                    marginBottom: "3rem"
+                  }}>
+                  <Button
+                    onClick={() => {
+                      getFound();
+                      byId("categoryFilter").value = "Category filter"
+                    }}
+                    className="btn-neutral btn-icon py-1"
+                    color="default"
+                    size="sm">
+                    All
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      myFoundFilter();
+                      byId("categoryFilter").value = "Category filter"
+                    }}
+                    className="btn-neutral btn-icon py-1"
+                    color="default"
+                    size="sm">
+                    My Found
+                  </Button>
+                  <select
+                    id="categoryFilter"
+                    onChange={categoryFIlter}
+                    className="w-25 form-control form-control-sm">
+                    <option selected disabled>Category filter</option>
+                    {category && category.map((item, i) =>
+                      <option key={i} value={item.id}>{item.name}</option>
+                    )}
+                  </select>
+                </div>
                 <Row className="row-grid">
                   {found && found.map((item, i) =>
                     <Col lg="4" className="mb-5" key={i}>

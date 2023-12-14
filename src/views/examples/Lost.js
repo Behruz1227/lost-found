@@ -142,6 +142,25 @@ const Lost = () => {
     else getLost();
   }
 
+  // category filter
+  const categoryFIlter = () => {
+    let categoryId = byId("categoryFilter").value
+    axios.get(api + "item/category/" + categoryId + "/", {
+      headers: { Authorization: sessionStorage.getItem("jwtToken") }
+    })
+      .then(res => setLost(res.data.filter(c => c.type == "LOST")))
+      .catch(() => console.log("category filter ishlamadi!!!"))
+  }
+
+  // my lost filter
+  const myLostFilter = () => {
+    axios.get(api + "items/", {
+      headers: { Authorization: sessionStorage.getItem("jwtToken") }
+    })
+      .then(res => setLost(res.data.filter(i => i.type == "LOST")))
+      .catch(() => console.log("my items kelamdi!!!"))
+  }
+
   // go about
   const goAbout = () => byId("linkLost").click();
 
@@ -197,7 +216,7 @@ const Lost = () => {
                     </div>
                   </Col>
                   <Col className="text-center" lg="6">
-                    <img className="py-4" style={{ objectFit: "cover", height: "400px" }} src={require("assets/img/theme/landing.png")} alt="" />
+                    <img className="py-4 mt-5 mt-lg-0" style={{ objectFit: "cover", height: "400px" }} src={require("assets/img/theme/landing.png")} alt="" />
                   </Col>
                 </Row>
               </div>
@@ -221,6 +240,43 @@ const Lost = () => {
           <Container>
             <Row className="justify-content-center">
               <Col lg="12">
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "3rem",
+                    marginBottom: "3rem"
+                  }}>
+                  <Button
+                    onClick={() => {
+                      getLost();
+                      byId("categoryFilter").value = "Category filter"
+                    }}
+                    className="btn-neutral btn-icon py-1"
+                    color="default"
+                    size="sm">
+                    All
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      myLostFilter();
+                      byId("categoryFilter").value = "Category filter"
+                    }}
+                    className="btn-neutral btn-icon py-1"
+                    color="default"
+                    size="sm">
+                    My Lost
+                  </Button>
+                  <select
+                    id="categoryFilter"
+                    onChange={categoryFIlter}
+                    className="w-25 form-control form-control-sm">
+                    <option selected disabled>Category filter</option>
+                    {category && category.map((item, i) =>
+                      <option key={i} value={item.id}>{item.name}</option>
+                    )}
+                  </select>
+                </div>
                 <Row className="row-grid">
                   {lost && lost.map((item, i) =>
                     <Col lg="4" className="mb-5" key={i}>

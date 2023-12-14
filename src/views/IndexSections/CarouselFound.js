@@ -61,10 +61,6 @@ const Carousel = () => {
                                     {foundAbout.contact_info}
                                 </span>
                             </h1>
-                            <p className="lead text-white mt-4">
-                                <span style={{ fontWeight: "bold", marginRight: ".5rem" }}>Description:</span>
-                                {foundAbout.description}
-                            </p>
                         </Col>
                         <Col className="mb-lg-auto" lg="6">
                             <div className="rounded shadow-lg overflow-hidden transform-perspective-right">
@@ -75,6 +71,10 @@ const Carousel = () => {
                             </div>
                         </Col>
                     </Row>
+                    <p className="lead text-white" style={{marginTop: "5rem"}}>
+                        <span style={{ fontWeight: "bold", marginRight: ".5rem" }}>Description:</span>
+                        {foundAbout.description}
+                    </p>
                 </Container>
             </section>
         </>
