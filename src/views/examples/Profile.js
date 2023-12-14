@@ -23,10 +23,10 @@ const Profile = () => {
     getItems()
   }, []);
 
-  const [lostId, setLostId] = useState([]);
+  const [items, setitems] = useState([]);
   const [category, setCategory] = useState([]);
   const [getMe1, setGetMe] = useState([]);
-  const [items, setItems] = useState([]);
+  const [lost, setlost] = useState([]);
   const [EditModal, setEditModal] = useState(false);
   const [DeleteModal, setDeleteModal] = useState(false);
 
@@ -44,9 +44,9 @@ const Profile = () => {
     editData.append("latitude", 0);
     editData.append("longitude", 0);
     editData.append("category ", byId("category").value);
-    editData.append("id", lostId.id);
+    editData.append("id", items.id);
 
-    axios.put(api + "item" + lostId.id + "/", editData, {
+    axios.put(api + "item" + items.id + "/", editData, {
       headers: {
         Authorization: sessionStorage.getItem('jwtToken'),
       },
@@ -72,7 +72,7 @@ const Profile = () => {
   }
 
   const deleteLostItem = () => {
-    axios.delete(api + "item" + lostId.id + "/", {
+    axios.delete(api + "item" + items.id + "/", {
       headers: {
         Authorization: sessionStorage.getItem("jwtToken"),
       },
@@ -98,7 +98,7 @@ const Profile = () => {
     axios
       .get(api + "items/", config)
       .then((res) => {
-        setItems(res.data);
+        setitems(res.data);
       })
       .catch((err) => console.log(err));
   }
@@ -234,7 +234,7 @@ const Profile = () => {
                                     className="mr-3"
                                     onClick={() => {
                                       openEditModal();
-                                      setLostId(item);
+                                      setitems(item);
                                     }}
                                   >
                                     <Icon icon="uiw:edit" width="23" />
@@ -242,7 +242,7 @@ const Profile = () => {
                                   <Link
                                     onClick={() => {
                                       openDeleteModal();
-                                      setLostId(item);
+                                      setitems(item);
                                     }}
                                   >
                                     <Icon
@@ -274,17 +274,17 @@ const Profile = () => {
             id="name"
             className="mb-3"
             placeholder="Name"
-            defaultValue={lostId && lostId.name} />
+            defaultValue={items && items.name} />
           <Input
             id="contact_info"
             className="mb-3"
             placeholder="Contact info"
-            defaultValue={lostId && lostId.contact_info} />
+            defaultValue={items && items.contact_info} />
           <textarea
             id="description"
             className="form-control"
             placeholder="Description"
-            defaultValue={lostId && lostId.description} />
+            defaultValue={items && items.description} />
           <select class="form-control mt-3" id="category">
             <option selected disabled>Category</option>
             {category && category.map((item, i) =>
@@ -308,9 +308,9 @@ const Profile = () => {
       <Modal isOpen={DeleteModal} centered size="lg">
         <ModalHeader
           toggle={openDeleteModal}
-          className="text-dark fs-4 fw-bolder">Delete Lost</ModalHeader>
+          className="text-dark fs-4 fw-bolder">Delete item</ModalHeader>
         <ModalBody className="techer__modal-body">
-          {lostId.name} ni o'chirishga ishonchingiz komilmi?
+          {items.name} ni o'chirishga ishonchingiz komilmi?
         </ModalBody>
         <ModalFooter>
           <Button
