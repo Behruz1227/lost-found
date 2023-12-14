@@ -38,7 +38,8 @@ const Profile = () => {
   const [items, setitems] = useState([]);
   const [category, setCategory] = useState([]);
   const [getMe1, setGetMe] = useState([]);
-  const [lost, setlost] = useState([]);
+  const [itemId, setItemId] = useState([]);
+
   const [EditModal, setEditModal] = useState(false);
   const [DeleteModal, setDeleteModal] = useState(false);
 
@@ -245,12 +246,12 @@ const Profile = () => {
                                     Learn more
                                   </Button>
                                 </Col>
-                                {/* <Col style={{ marginTop: "2rem" }}>
+                                <Col style={{ marginTop: "2rem" }}>
                                   <Link
                                     className="mr-3"
                                     onClick={() => {
                                       openEditModal();
-                                      setitems(item);
+                                      setItemId(item);
                                     }}
                                   >
                                     <Icon icon="uiw:edit" width="23" />
@@ -258,7 +259,7 @@ const Profile = () => {
                                   <Link
                                     onClick={() => {
                                       openDeleteModal();
-                                      setitems(item);
+                                      setItemId(item);
                                     }}
                                   >
                                     <Icon
@@ -266,7 +267,7 @@ const Profile = () => {
                                       width="25"
                                     />
                                   </Link>
-                                </Col> */}
+                                </Col>
                               </Row>
                             </CardBody>
                           </Card>
@@ -293,19 +294,19 @@ const Profile = () => {
             id="name"
             className="mb-3"
             placeholder="Name"
-            defaultValue={items && items.name}
+            defaultValue={itemId && itemId.name}
           />
           <Input
             id="contact_info"
             className="mb-3"
             placeholder="Contact info"
-            defaultValue={items && items.contact_info}
+            defaultValue={itemId && itemId.contact_info}
           />
           <textarea
             id="description"
             className="form-control"
             placeholder="Description"
-            defaultValue={items && items.description}
+            defaultValue={itemId && itemId.description}
           />
           <select class="form-control mt-3" id="category">
             <option selected disabled>
@@ -346,7 +347,7 @@ const Profile = () => {
           Delete item
         </ModalHeader>
         <ModalBody className="techer__modal-body">
-          {items.name} ni o'chirishga ishonchingiz komilmi?
+          {itemId.name} ni o'chirishga ishonchingiz komilmi?
         </ModalBody>
         <ModalFooter>
           <Button
