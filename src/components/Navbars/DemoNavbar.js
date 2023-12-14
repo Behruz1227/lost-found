@@ -59,8 +59,9 @@ const DemoNavbar = () => {
           <Container>
             <NavbarBrand className="mr-lg-5" href="/home" tag={NavLink} style={{ cursor: "pointer" }}>
               <img
+                style={{ width: "100px", height: "50px" }}
                 alt="..."
-                src={require("assets/img/brand/argon-react-white.png")} />
+                src={require("assets/img/brand/lostfound.png")} />
             </NavbarBrand>
             <button className="navbar-toggler" id="navbar_global">
               <span className="navbar-toggler-icon" />
@@ -76,8 +77,9 @@ const DemoNavbar = () => {
                   <Col className="collapse-brand" xs="6">
                     <NavLink to="/">
                       <img
+                        style={{ width: "200px", height: "50px" }}
                         alt="..."
-                        src={require("assets/img/brand/argon-react.png")} />
+                        src={require("assets/img/brand/mobileNav.png")} />
                     </NavLink>
                   </Col>
                   <Col className="collapse-close" xs="6">

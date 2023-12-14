@@ -56,8 +56,9 @@ const DefaultNav = () => {
           <Container>
             <NavbarBrand className="mr-lg-5" href="/" tag={NavLink} style={{ cursor: "pointer" }}>
               <img
+                style={{ width: "100px", height: "50px" }}
                 alt="..."
-                src={require("assets/img/brand/argon-react-white.png")} />
+                src={require("assets/img/brand/lostfound.png")} />
             </NavbarBrand>
             <button className="navbar-toggler" id="navbar_global">
               <span className="navbar-toggler-icon" />
@@ -73,8 +74,9 @@ const DefaultNav = () => {
                   <Col className="collapse-brand" xs="6">
                     <NavLink to="/">
                       <img
+                        style={{ width: "200px", height: "50px" }}
                         alt="..."
-                        src={require("assets/img/brand/argon-react.png")} />
+                        src={require("assets/img/brand/mobileNav.png")} />
                     </NavLink>
                   </Col>
                   <Col className="collapse-close" xs="6">
@@ -146,9 +148,9 @@ const DefaultNav = () => {
                     Star us on Github
                   </UncontrolledTooltip>
                 </NavItem>
-                <NavItem className="d-none d-lg-block ml-lg-3">
+                <NavItem className="d-lg-block mb-3 mb-lg-0 mt-2 mt-lg-0 ml-lg-3">
                   <Button
-                  onClick={signIn}
+                    onClick={signIn}
                     className="btn-neutral btn-icon"
                     color="default"
                     target="_blank">
@@ -159,7 +161,7 @@ const DefaultNav = () => {
                 </NavItem>
                 <NavItem className="d-lg-block ml-lg-2">
                   <Button
-                  onClick={signUp}
+                    onClick={signUp}
                     className="btn-neutral btn-icon"
                     color="default"
                     target="_blank">
