@@ -155,7 +155,7 @@ const Profile = () => {
                         <img
                           alt="..."
                           className="rounded-circle"
-                          src={require("assets/img/theme/team-4-800x800.jpg")}
+                          src="https://static.vecteezy.com/system/resources/thumbnails/002/387/693/small/user-profile-icon-free-vector.jpg"
                         />
                       </a>
                     </div>
@@ -245,7 +245,7 @@ const Profile = () => {
                                     Learn more
                                   </Button>
                                 </Col>
-                                <Col style={{ marginTop: "2rem" }}>
+                                {/* <Col style={{ marginTop: "2rem" }}>
                                   <Link
                                     className="mr-3"
                                     onClick={() => {
@@ -266,7 +266,7 @@ const Profile = () => {
                                       width="25"
                                     />
                                   </Link>
-                                </Col>
+                                </Col> */}
                               </Row>
                             </CardBody>
                           </Card>
