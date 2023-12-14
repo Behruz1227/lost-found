@@ -1,5 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Container, Row, Col, CardBody, Modal, ModalHeader, ModalBody, ModalFooter, Input } from "reactstrap";
+import {
+  Button,
+  Card,
+  Container,
+  Row,
+  Col,
+  CardBody,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Input,
+} from "reactstrap";
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
 import { ToastContainer, toast } from "react-toastify";
@@ -20,7 +32,7 @@ const Profile = () => {
 
     getMe();
     getCategory();
-    getItems()
+    getItems();
   }, []);
 
   const [items, setitems] = useState([]);
@@ -32,7 +44,6 @@ const Profile = () => {
 
   const openEditModal = () => setEditModal(!EditModal);
   const openDeleteModal = () => setDeleteModal(!DeleteModal);
-
 
   const editLostItem = () => {
     const editData = new FormData();
@@ -46,44 +57,47 @@ const Profile = () => {
     editData.append("category ", byId("category").value);
     editData.append("id", items.id);
 
-    axios.put(api + "item" + items.id + "/", editData, {
-      headers: {
-        Authorization: sessionStorage.getItem('jwtToken'),
-      },
-    })
+    axios
+      .put(api + "item" + items.id + "/", editData, {
+        headers: {
+          Authorization: sessionStorage.getItem("jwtToken"),
+        },
+      })
       .then(() => {
         openEditModal();
-        getItems()
-        toast.success("Lost item muvaffaqiyatli taxrirlandi✔")
+        getItems();
+        toast.success("Item muvaffaqiyatli taxrirlandi✔");
       })
       .catch(() => {
-        toast.error("Lost item taxrirlashda xatolik yuz berdi!!!")
-      })
-  }
+        toast.error("Item taxrirlashda xatolik yuz berdi!!!");
+      });
+  };
 
   // getCategory
   const getCategory = () => {
     let config = {
-      headers: { Authorization: sessionStorage.getItem('jwtToken') }
-    }
-    axios.get(api + "category/", config)
-      .then(res => setCategory(res.data))
-      .catch(() => console.log("category kelmadi!!!"))
-  }
+      headers: { Authorization: sessionStorage.getItem("jwtToken") },
+    };
+    axios
+      .get(api + "category/", config)
+      .then((res) => setCategory(res.data))
+      .catch(() => console.log("category kelmadi!!!"));
+  };
 
   const deleteLostItem = () => {
-    axios.delete(api + "item" + items.id + "/", {
-      headers: {
-        Authorization: sessionStorage.getItem("jwtToken"),
-      },
-    })
+    axios
+      .delete(api + "item" + items.id + "/", {
+        headers: {
+          Authorization: sessionStorage.getItem("jwtToken"),
+        },
+      })
       .then(() => {
-        toast.success("Lost item o'chirildi!!!");
+        toast.success("Item o'chirildi!!!");
         openDeleteModal();
         getItems();
       })
-      .catch(() => toast.error("Lost item o'chirishda xatolik yuz berdi!!!"))
-  }
+      .catch(() => toast.error("Item o'chirishda xatolik yuz berdi!!!"));
+  };
 
   function getMe() {
     axios
@@ -96,7 +110,9 @@ const Profile = () => {
 
   function getItems() {
     axios
-      .get(api + "items/", config)
+      .get(api + "items/", {
+        headers: { Authorization: sessionStorage.getItem("jwtToken") },
+      })
       .then((res) => {
         setitems(res.data);
       })
@@ -108,7 +124,7 @@ const Profile = () => {
   return (
     <>
       <DemoNavbar />
-      <ToastContainer/>
+      <ToastContainer />
       <Link to="/lost/about" id="linkLost"></Link>
       <main className="profile-page">
         <section className="section-profile-cover section-shaped my-0">
@@ -267,40 +283,57 @@ const Profile = () => {
       <Modal isOpen={EditModal} centered size="lg">
         <ModalHeader
           toggle={openEditModal}
-          className="text-dark fs-4 fw-bolder">Edit Lost</ModalHeader>
+          className="text-dark fs-4 fw-bolder"
+        >
+          Edit Lost
+        </ModalHeader>
         <ModalBody className="techer__modal-body">
           <Input type="file" className="form-control mb-3" id="file" />
           <Input
             id="name"
             className="mb-3"
             placeholder="Name"
-            defaultValue={items && items.name} />
+            defaultValue={items && items.name}
+          />
           <Input
             id="contact_info"
             className="mb-3"
             placeholder="Contact info"
-            defaultValue={items && items.contact_info} />
+            defaultValue={items && items.contact_info}
+          />
           <textarea
             id="description"
             className="form-control"
             placeholder="Description"
-            defaultValue={items && items.description} />
+            defaultValue={items && items.description}
+          />
           <select class="form-control mt-3" id="category">
-            <option selected disabled>Category</option>
-            {category && category.map((item, i) =>
-              <option key={i} value={item.id}>{item.name}</option>
-            )}
+            <option selected disabled>
+              Category
+            </option>
+            {category &&
+              category.map((item, i) => (
+                <option key={i} value={item.id}>
+                  {item.name}
+                </option>
+              ))}
           </select>
         </ModalBody>
         <ModalFooter>
           <Button
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
             className="bg-danger"
-            onClick={openEditModal}>Close</Button>
+            onClick={openEditModal}
+          >
+            Close
+          </Button>
           <Button
             className="bg-success"
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={editLostItem}>Save</Button>
+            onClick={editLostItem}
+          >
+            Save
+          </Button>
         </ModalFooter>
       </Modal>
 
@@ -308,7 +341,10 @@ const Profile = () => {
       <Modal isOpen={DeleteModal} centered size="lg">
         <ModalHeader
           toggle={openDeleteModal}
-          className="text-dark fs-4 fw-bolder">Delete item</ModalHeader>
+          className="text-dark fs-4 fw-bolder"
+        >
+          Delete item
+        </ModalHeader>
         <ModalBody className="techer__modal-body">
           {items.name} ni o'chirishga ishonchingiz komilmi?
         </ModalBody>
@@ -316,11 +352,17 @@ const Profile = () => {
           <Button
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
             className="bg-danger"
-            onClick={openDeleteModal}>Close</Button>
+            onClick={openDeleteModal}
+          >
+            Close
+          </Button>
           <Button
             className="bg-success"
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={deleteLostItem}>Yes</Button>
+            onClick={deleteLostItem}
+          >
+            Yes
+          </Button>
         </ModalFooter>
       </Modal>
       <SimpleFooter />
