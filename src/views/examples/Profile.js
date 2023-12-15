@@ -23,10 +23,6 @@ import { Icon } from "@iconify/react";
 import { byId } from "components/api/api";
 
 const Profile = () => {
-
-
-  
-
   const [items, setitems] = useState([]);
   const [category, setCategory] = useState([]);
   const [getMe1, setGetMe] = useState([]);
@@ -38,10 +34,13 @@ const Profile = () => {
   const openEditModal = () => setEditModal(!EditModal);
   const openDeleteModal = () => setDeleteModal(!DeleteModal);
 
-  useEffect( () => {
+  useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
-   
+    if (sessionStorage.getItem("reloadStudent") !== "true") {
+      sessionStorage.setItem("reloadStudent", "true");
+      window.location.reload();
+    }
     getMe();
     getCategory();
     getItems();
@@ -60,6 +59,17 @@ const Profile = () => {
       .catch((err) => console.log(err));
   }
 
+  useEffect(() => {
+    document.documentElement.scrollTop = 0;
+    document.scrollingElement.scrollTop = 0;
+    if (sessionStorage.getItem("reload") !== "true") {
+      sessionStorage.setItem("reload", "true");
+      window.location.reload();
+    }
+    getMe();
+    getCategory();
+    getItems();
+  }, []);
 
   const editItemdata = () => {
     const editData = new FormData();
@@ -89,8 +99,6 @@ const Profile = () => {
       });
   };
 
-
-
   // getCategory
   const getCategory = () => {
     let config = {
@@ -117,7 +125,6 @@ const Profile = () => {
       .catch(() => toast.error("Item o'chirishda xatolik yuz berdi!!!"));
   };
 
- 
   function getItems() {
     axios
       .get(api + "items/", {

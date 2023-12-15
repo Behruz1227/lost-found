@@ -19,11 +19,11 @@ const Hero2 = () => {
           <Container className="shape-container d-flex align-items-center py-lg">
             <div className="col px-0">
               <Row className="align-items-center justify-content-center g-5">
-                <Col className="text-center" lg="6">
+                <Col className="text-center mb-4" lg="6">
                   <img
                     alt="..."
-                    className="img-fluid"
-                    src={require("assets/img/theme/landing.jpg")}
+                    className="img-fluid px-5"
+                    src={require("assets/img/theme/output-onlinepngtools (3).png")}
                   />
 
                   {/* <div className="btn-wrapper ">
@@ -53,9 +53,18 @@ const Hero2 = () => {
                     />
                   </div> */}
                 </Col>
-                <Col className="text-center px-5" lg="6">
-                  <p className="lead text-white">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis corporis fugit deleniti? Excepturi quaerat dolor quas dolores nulla dolorum voluptas, eius, magnam impedit obcaecati nisi, doloribus non accusantium eaque quia.
+                <Col className="text-center" lg="6">
+                  <p className="text-white fs-md-2" style={{fontWeight: "600"}}>
+                    Lost and Found, o'zini dunyodagi eng yirik global qaytarish
+                    kompaniyasi deb ataydi va u turli ko'chma buyumlarni
+                    aniqlash va himoya qilish uchun qaytarish teglaridan
+                    foydalanadi. Bu buyumlar orasida mobil telefonlar,
+                    noutbuklar, kalitlar, yuk sumkalari va uy hayvonlari mavjud.
+                    Ularning ma'lumotlariga ko'ra, ular sayt orqali turli qiymatli buyumlarni
+                    teglash va himoya qilish uchun mahsulotlarni taklif
+                    etishadi, shuningdek teglarni faollashtirish, topilgan va
+                    yo'qolgan buyumlar haqida xabar berish bo'yicha ko'rsatmalar
+                    mavjud.
                   </p>
                 </Col>
               </Row>
