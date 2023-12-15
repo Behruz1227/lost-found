@@ -291,7 +291,7 @@ const Lost = () => {
                             {item.name}
                           </h6>
                           <Row>
-                            <Col className="col-8">
+                            {/* <Col className="col-8"> */}
                               <Button
                                 onClick={() => {
                                   goAbout();
@@ -301,21 +301,8 @@ const Lost = () => {
                                 color="primary">
                                 Learn more
                               </Button>
-                            </Col>
-                            <Col style={{ marginTop: "2rem" }}>
-                              <Link className="mr-3" onClick={() => {
-                                openEditModal();
-                                setLostId(item);
-                              }}>
-                                <Icon icon="uiw:edit" width="23" />
-                              </Link>
-                              <Link onClick={() => {
-                                openDeleteModal();
-                                setLostId(item)
-                              }}>
-                                <Icon icon="ic:baseline-delete" width="25" />
-                              </Link>
-                            </Col>
+                            {/* </Col> */}
+                          
                           </Row>
                         </CardBody>
                       </Card>
