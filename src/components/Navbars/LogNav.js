@@ -164,6 +164,7 @@ const LogNav = () => {
               </Nav>
             </UncontrolledCollapse>
           </Container>
+          
         </Navbar>
       </header>
     </>
