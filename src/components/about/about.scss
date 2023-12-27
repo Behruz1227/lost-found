@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,300;0,400;1,300;1,400&family=Inika:wght@400;700&family=Lora:ital@0;1&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,700&family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500&family=Space+Mono:wght@700&display=swap');
+$font-f: 'Inika', serif;
+
+.about__heading-back {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: $font-f;
+    letter-spacing: 1px;
+    color: black;
+    margin-bottom: 3rem;
+
+    a {
+        text-decoration: none;
+        color: black;
+        transition: all .3s;
+
+        &:hover {
+            color: #FFB517;
+        }
+    }
+}
+
+.category-btn {
+    margin-top: 2rem;
+
+    button {
+        font-family: $font-f;
+        padding: 10px 25px;
+        margin: .5rem;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        border-radius: 30px;
+        border: none;
+        color: red;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        background: rgb(0, 78, 255);
+        background: linear-gradient(0deg, rgba(0, 78, 255, 0.5019257703081232) 0%, rgba(0, 78, 255, 1) 50%, rgba(0, 78, 255, 0.499124649859944) 100%);
+        transition: all .3s;
+
+        &:hover {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        &:active {
+            transform: scale(.9);
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            background: rgb(0, 78, 255);
+            background: linear-gradient(0deg, rgba(0, 78, 255, 0) 0%, rgba(0, 78, 255, 0.9473039215686274) 50%, rgba(0, 78, 255, 0) 100%);
+        }
+    }
+}
+
+.about-accardions {
+    font-family: $font-f;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    padding: 1rem;
+    background-color: #D9D9D9CF;
+    border-radius: 30px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.accardion-style {
+    border-bottom: 1px solid #D9D9D9CF !important;
+    font-family: $font-f;
+
+    .accardion-header {
+        &:focus {
+            outline: 0 !important;
+        }
+    }
+}

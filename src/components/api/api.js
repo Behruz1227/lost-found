@@ -1,9 +1,16 @@
-export const api = "https://lostfoundapi.pythonanywhere.com/";
+export const api = "https://lostfoundapis.pythonanywhere.com/";
+export const apiImg = "https://lostfoundapis.pythonanywhere.com";
 
-// Authorization config
-export const config = {
-    headers: {Authorization: sessionStorage.getItem('jwtToken')}
-};
+// admin user:
+// +998908632230
+// parol:
+// 22
 
-// byid
-export const byId = (id) => document.getElementById(id)
+// background: rgb(255, 255, 255);
+//   background: linear-gradient(
+//     0deg,
+//     rgba(255, 255, 255, 1) 0%,
+//     rgba(34, 129, 195, 1) 85%
+//   );
+
+export const byId = (id) => document.getElementById(id);

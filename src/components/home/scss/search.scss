@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,300;0,400;1,300;1,400&family=Inika:wght@400;700&family=Lora:ital@0;1&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,700&family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500&family=Space+Mono:wght@700&display=swap');
+$font-f: 'Inika', serif;
+
+.remove_container {
+    font-family: $font-f;
+
+    h4 {
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 4rem;
+        color: black;
+
+        a {
+            text-decoration: none;
+            color: black;
+            transition: all .3s;
+
+            &:hover {
+                color: #FFB517;
+            }
+        }
+    }
+}
+
+.search-filters {
+    margin-bottom: 2rem;
+
+    div:nth-child(1) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    button {
+        padding: 7px 25px;
+        margin-right: 1rem;
+        border: none;
+        font-size: 1rem;
+        font-weight: 700;
+        font-family: $font-f;
+        letter-spacing: 1px;
+        transition: all .3s;
+        background: rgb(255, 223, 157);
+        background: linear-gradient(0deg, rgba(255, 223, 157, 1) 0%, rgba(255, 174, 0, 1) 50%, rgba(255, 223, 157, 1) 100%);
+
+        &:active {
+            transform: scale(.85);
+        }
+    }
+
+    #category {
+        margin-right: 1rem;
+    }
+
+    // #type {
+    //     display: inline-block;
+    //     width: 25%;
+    // }
+
+    #searchInput {
+        font-family: $font-f;
+        letter-spacing: 1px;
+
+        &::placeholder {
+            font-family: $font-f;
+            font-weight: 700;
+            letter-spacing: 1px;
+            
+        }
+    }
+}
+
+.search_main {
+    width: 100%;
+    height: 100%;
+    font-family: $font-f;
+    padding-bottom: 1.5rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transition: all .3s;
+
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    .search_hover {
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all .3s;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: .5rem;
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: black;
+    }
+}
+
+@media (max-width: 1200px) {
+    .search_main {
+        .search_hover {
+            height: 200px;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .search_main {
+        .search_hover {
+            height: 250px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .search_main {
+        .search_hover {
+            height: 200px;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .search_main {
+        .search_hover {
+            height: 300px;
+        }
+    }
+
+    .col-p-remove {
+        padding-right: 0 !important;
+        padding-left: 1.5rem !important;
+    }
+}
